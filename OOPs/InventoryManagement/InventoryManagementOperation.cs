@@ -32,7 +32,7 @@ namespace OOPs.InventoryManagement
                 InventoryDetails details = new InventoryDetails()
                 {
                     Name = Console.ReadLine(),
-                    Weight = Convert.ToInt32(Console.ReadLine()),   
+                    Weight = Convert.ToInt32(Console.ReadLine()),
                     PricePerKg = Convert.ToInt32(Console.ReadLine())
                 };
                 list.RiceList.Add(details);
@@ -59,20 +59,20 @@ namespace OOPs.InventoryManagement
                 };
                 list.PulsesList.Add(details);
             }
-            
+
         }
         public void DeleteInventoryManagement(string objectName, string InventoryName)
         {
             InventoryDetails details = new InventoryDetails();
-            if(objectName.ToLower().Equals("rice"))
+            if (objectName.ToLower().Equals("rice"))
             {
-                foreach(var data in list.RiceList)
+                foreach (var data in list.RiceList)
                 {
                     if (data.Name.Equals(InventoryName))
                         details = data;
                 }
                 if (details != null)
-                    list.RiceList . Remove(details);
+                    list.RiceList.Remove(details);
             }
             if (objectName.ToLower().Equals("wheat"))
             {
@@ -94,7 +94,7 @@ namespace OOPs.InventoryManagement
                 if (details != null)
                     list.PulsesList.Remove(details);
             }
-            if (details==null)
+            if (details == null)
                 Console.WriteLine("No Inventory details Exists");
 
 
@@ -102,22 +102,23 @@ namespace OOPs.InventoryManagement
 
 
         public void WriteToJsonFile(string filepath)
+        {
+
+            var json = JsonConvert.SerializeObject(list);
+            File.WriteAllText(filepath, json);
+        }
+
+
+
+        public void Display(List<InventoryDetails> list)
+        {
+            foreach (var data in list)
             {
+                Console.WriteLine(data.Name + " " + data.Weight + " " + data.PricePerKg);
 
-                var json = JsonConvert.SerializeObject(list);
-                File.WriteAllText(filepath, json);
+                Console.WriteLine("");
             }
-
-
-
-            public void Display(List<InventoryDetails> list)
-            {
-                foreach (var data in list)
-                {
-                    Console.WriteLine(data.Name + " " + data.Weight + " " + data.PricePerKg);
-                
-            }
-            }
+        }
     }
 }
 
