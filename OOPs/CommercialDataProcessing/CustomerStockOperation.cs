@@ -70,7 +70,7 @@ namespace OOPs.CommercialDataProcessing
             }
             if (buyStock == null)
             {
-                Console.WriteLine("Stock Doesn't Exist !!");
+                Console.WriteLine(" Those Stock Doesn't Exist !!");
             }
             else
             {
